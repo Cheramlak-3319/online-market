@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 
-const { homePage, cheakoutPage, orderPage, trackingPage, paymentForOrders, paymentCheaking } = require('../controller/controller')
+const { homePage, cheakoutPage, orderPage, trackingPage, paymentForOrders, waitingPage } = require('../controller/controller')
 
 
 router.get('/home', homePage)
@@ -16,7 +16,7 @@ router.get('/track', trackingPage)
 
 
 router.post('/hellocash', paymentForOrders)
-router.get('/waiting', paymentCheaking)
+router.get('/waiting', waitingPage)
 
 
 

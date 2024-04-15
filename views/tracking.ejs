@@ -60,20 +60,22 @@
 <body>
 
     <div class="container">
-        <h1>Thank you for Selecting Us Your product will Deliverd soon
-        </h1>
-        <h4>SMS sent for your Phone Please Pay into *912*4# for orederd products</h4>
+        <h4>
+            description
+        </h4>
         <button class="traceNumber">THANK YOU</button>
     </div>
 </body>
 <script>
     document.querySelector('.traceNumber').addEventListener('click', async() => {
+
+
+
         const traceNumber = localStorage.getItem('traceNumber');
-        console.log(traceNumber);
 
         try {
 
-            window.location.href = 'http://localhost:6500/chere-market/home'
+            window.location.href = 'http://localhost:6500/chere-market/waiting'
         } catch (error) {
             console.error("Error: " + error);
         }

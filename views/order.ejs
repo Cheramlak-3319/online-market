@@ -92,6 +92,8 @@
                             amount: amount
                         })
                     });
+                    const data = response.json();
+                    console.log(data);
                     window.location.href = 'http://localhost:6500/chere-market/track';
                 } catch (error) {
                     console.error("Error: " + error);
