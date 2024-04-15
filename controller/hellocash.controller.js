@@ -1,5 +1,5 @@
 const HC_PRINCIPAL = "1256263";
-const HC_PASSWORD = "moges123";
+const HC_PASSWORD = "moges@123";
 const HC_SYSTEM = "lucy";
 const ejs = require('ejs');
 
@@ -16,8 +16,8 @@ const authenticateUser = async(res) => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    'principal': "",
-                    'credentials': "moges123",
+                    'principal': "1256263",
+                    'credentials': "moges@123",
                     'system': "lucy"
                 })
             });
