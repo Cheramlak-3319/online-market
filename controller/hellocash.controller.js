@@ -23,6 +23,7 @@ const authenticateUser = async(res) => {
             });
 
         const tokenData = await response.json();
+        console.log(tokenData);
         console.log("Response: " + JSON.stringify(tokenData));
         return tokenData['token'];
     } catch (error) {
@@ -45,7 +46,7 @@ const ceateHcInvoice = async(req, res, from, amount) => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${signedToken}` },
                 body: JSON.stringify({
-                    amount: 5.0,
+                    amount: amount,
                     from: from,
                     notifyfrom: true,
                 })
@@ -54,7 +55,9 @@ const ceateHcInvoice = async(req, res, from, amount) => {
 
         console.log('Payment request Successful');
         const encodedResponse = await response.json();
-        return encodedResponse;
+        console.log(encodedResponse.description);
+        const valuedData = encodedResponse.description;
+        return valuedData;
     } catch (error) {
         console.error(`Error: ${error.message}`);
     }
@@ -65,7 +68,7 @@ const ceateHcInvoice = async(req, res, from, amount) => {
 
 
 
-const updateInvoice = async(req, res) => {
+const updateInvoice = async(req, res, description) => {
     try {
         const signedToken = await authenticateUser(res);
         const response = await fetch(
@@ -75,24 +78,18 @@ const updateInvoice = async(req, res) => {
             }
         );
         const data = await response.json();
-        console.log(data);
         const output = JSON.stringify(data);
-        const findUser = await Invoice.findOne({ traceNumber });
-        console.log(findUser.code);
-        console.log(findUser.amount);
-        const amount = findUser.amount;
         for (const item of data) {
-            const code = item['code']
+            const code = item['description']
             console.log(code);
             const status = item['status'];
-            if (findUser.code === code) {
+            if (description === code) {
                 if (status === 'PROCESSED') {
-                    console.log('still pending')
+                    res.redirect('http://localhost:6500/chere-market/home');
                     break;
                 } else if (status === 'PENDING') {
-
-                    res.redirect('http://localhost:6500/chere-market/track');
-                    return;
+                    console.log('still pending')
+                    res.redirect('http://localhost:6500/chere-market/waiting');
                 } else {
                     console.log('try again');
                     break;

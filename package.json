@@ -5,12 +5,12 @@
     "express": "^4.19.1",
     "json-web-token": "^3.2.0",
     "node-fetch": "^3.3.2",
+    "node-localstorage": "^3.0.5",
     "nodemon": "^3.1.0"
   },
   "name": "market",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
