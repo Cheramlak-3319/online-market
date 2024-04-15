@@ -9,10 +9,10 @@ let totalprice = 0;
 let price = 0;
 
 
+
 cart.forEach((item) => {
     let productId = item.productId;
     let matchingProduct;
-
 
 
     products.forEach((product) => {
@@ -22,8 +22,6 @@ cart.forEach((item) => {
             price += totalprice;
         }
     })
-
-
 
 
 

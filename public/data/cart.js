@@ -9,6 +9,9 @@ if (!cart) {
 }
 
 
+
+
+
 export function saveToStorage() {
     localStorage.setItem('cart', JSON.stringify(cart));
 
@@ -16,6 +19,26 @@ export function saveToStorage() {
 
 
 
+function updatedCartItems() {
+    const updatedCart = [];
+    cart.forEach((item) => {
+        updatedCart.push(item.productId)
+        console.log(updatedCart)
+        for (let i = 0; i < cart.length; i++) {
+            for (let j = 0; j < cart.length; j++) {
+                if (i === j) {
+                    continue;
+                }
+            }
+        }
+    })
+    cart = updatedCart;
+    saveToStorage();
+}
+
+
+
+updatedCartItems()
 
 
 
