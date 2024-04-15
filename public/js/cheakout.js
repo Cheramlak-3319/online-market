@@ -4,9 +4,6 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions } from "../data/deliveryDate.js";
 
 
-
-
-
 let cartQuantityHtml = '';
 let totalprice = 0;
 let price = 0;
