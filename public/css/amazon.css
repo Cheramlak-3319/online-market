@@ -13,7 +13,7 @@
        8 times (instead of typing out "1fr" 8 times).
        repeat(...) is a special property that works with
        display: grid; */
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
 
 
@@ -22,7 +22,7 @@
    means when the screen width is 2000px or less, we
    will divide the grid into 7 columns instead of 8. */
 
-@media (max-width: 2000px) {
+@media (max-width: 200px) {
     .products-grid {
         grid-template-columns: repeat(7, 1fr);
     }
@@ -69,7 +69,7 @@
 }
 
 .product-container {
-    padding-top: 40px;
+    padding-top: 50px;
     padding-bottom: 25px;
     padding-left: 25px;
     padding-right: 25px;
