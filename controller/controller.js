@@ -29,7 +29,6 @@ const findProduct = async(req, res) => {
     const { productId } = req.params;
     try {
         let product = await Product.findById(productId);
-        product = JSON.stringify({ product })
         res.render('hellomarket', { name: product.name, image: product.image, price: product, price: product.price })
     } catch (error) {
         console.error('Error finding product:', error);
