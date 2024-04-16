@@ -2,6 +2,13 @@
     margin-top: 60px;
 }
 
+.products-grid h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .products-grid {
     display: grid;
     /* - In CSS Grid, 1fr means a column will take up the
