@@ -1,5 +1,6 @@
 const express = require('express');
 const PORT = 6500;
+const mongoose = require('mongoose');
 
 const { errorHandler, endpointNotFoundError } = require('./middleware/error_handler.middleware');
 
@@ -19,5 +20,8 @@ app.use('/chere-market', router)
 app.use('*', endpointNotFoundError);
 
 app.use(errorHandler);
+
+
+mongoose.connect("mongodb+srv://cheeman:9Bcts_2015@atlascluster.untqfzs.mongodb.net/ecommerce?retryWrites=true&w=majority");
 
 app.listen(PORT, console.log('app is listning'));
