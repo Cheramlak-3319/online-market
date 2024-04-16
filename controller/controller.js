@@ -43,6 +43,20 @@ const findProduct = async(req, res) => {
 
 
 
+const findAllProduct = async(req, res) => {
+    try {
+        const products = await Product.find();
+        res.render('hellomarket', { products });
+    } catch (error) {
+        console.error('Error finding product:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
+
+
+
+
 
 
 
@@ -155,4 +169,4 @@ const waitingPage = async(req, res) => {
     await hcLucy.updateInvoice(req, res, description);
 }
 
-module.exports = { homePage, cheakoutPage, orderPage, trackingPage, paymentForOrders, paymentCheaking, waitingPage, creatingProduct, findProduct }
+module.exports = { homePage, cheakoutPage, orderPage, trackingPage, paymentForOrders, paymentCheaking, waitingPage, creatingProduct, findProduct, findAllProduct }
