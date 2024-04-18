@@ -1,5 +1,5 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+let order = [];
 
 
 // function removeDuplicatesFromCart() {
@@ -20,7 +20,6 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 // cart = removeDuplicatesFromCart();
 
 // // Update the cart in local storage
-// localStorage.setItem('cart', JSON.stringify(cart));
 
 
 
@@ -79,12 +78,18 @@ const EsimatedTax = Number((productPrice * 0.1).toFixed(2));
 let orderTotal = (EsimatedTax + totalBeforTax + Shipping).toFixed(2);
 document.querySelector('.js-tax-befor').innerHTML = `${totalBeforTax}`
 document.querySelector('.js-payment-summary-shipping').innerHTML = `$${Shipping}`
-document.querySelector('.js-tax-befor').innerHTML = `${productPrice}`
+    // document.querySelector('.js-tax-befor').innerHTML = `${productPrice}`
 document.querySelector('.js-payment-tax').innerHTML = `${EsimatedTax}`
 document.querySelector('.js-items-quantity').innerHTML = `Items (${totalItem})`
 document.querySelector('.js-order-total').innerHTML = `${orderTotal}`
 
+const product = { total: orderTotal };
 
+order.push(product)
+
+localStorage.setItem('order', JSON.stringify(order));
+
+console.log(JSON.parse(localStorage.getItem('order')))
 
 
 
