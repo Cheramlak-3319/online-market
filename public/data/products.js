@@ -4,7 +4,7 @@ export const products = [{
         name: "Arsenal FC Orginal T-Shirt",
         rating: {
             stars: 5,
-            count: 120000
+            count: 1200
         },
         priceCents: 500000,
         keywords: [

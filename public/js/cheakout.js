@@ -1,8 +1,13 @@
-import Product from "../../model/product.model.js";
-import { cart, removeFromCart, updateDeliveryOption, saveToStorage } from "../data/cart.js";
 import { products } from "../data/products.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { deliveryOptions } from "../data/deliveryDate.js";
+
+
+
+
+
+
+
 
 
 let cartQuantityHtml = '';
@@ -12,12 +17,12 @@ let price = 0;
 
 
 cart.forEach((item) => {
-    let productId = item.productId;
+    let productName = item.productName;
     let matchingProduct;
 
 
     Product.forEach((product) => {
-        if (product.id === productId) {
+        if (product.name === productName) {
             matchingProduct = product;
             console.log(matchingProduct)
 
@@ -39,9 +44,9 @@ cart.forEach((item) => {
     //     }
     // })
 
-    // const today = dayjs();
-    // const deliveryDate = today.add(deliveryOption.deliveryTime, 'days');
-    // const dateString = deliveryDate.format('dddd MMMM D YYYY');
+    const today = dayjs();
+    const deliveryDate = today.add(deliveryOption.deliveryTime, 'days');
+    const dateString = deliveryDate.format('dddd MMMM D YYYY');
 
 
 
@@ -85,22 +90,22 @@ cart.forEach((item) => {
   `
 })
 
-const totalPrice = (((price / 100) + (999 / 100)) * 0.10) + ((price / 100) + (999 / 100));
+// const totalPrice = (((price / 100) + (999 / 100)) * 0.10) + ((price / 100) + (999 / 100));
 
 
 document.querySelector('.js-order-summary').innerHTML = cartQuantityHtml;
 
-document.querySelector('.js-payment-summary-total').innerHTML = `$${(price / 100).toFixed(2)}`;
+// document.querySelector('.js-payment-summary-total').innerHTML = `$${(price / 100).toFixed(2)}`;
 
-document.querySelector('.js-payment-summary-shipping').innerHTML = `$${(999 / 100).toFixed(2)}`;
+// document.querySelector('.js-payment-summary-shipping').innerHTML = `$${(999 / 100).toFixed(2)}`;
 
-document.querySelector('.js-tax-befor').innerHTML = `$${((price / 100)+(999 / 100)).toFixed(2)}`;
-
-
-document.querySelector('.js-payment-tax').innerHTML = `$${(((price / 100)+(999 / 100))*0.10).toFixed(2)}`;
+// document.querySelector('.js-tax-befor').innerHTML = `$${((price / 100)+(999 / 100)).toFixed(2)}`;
 
 
-document.querySelector('.js-order-total').innerHTML = `$${(totalPrice).toFixed(2)}`;
+// document.querySelector('.js-payment-tax').innerHTML = `$${(((price / 100)+(999 / 100))*0.10).toFixed(2)}`;
+
+
+// document.querySelector('.js-order-total').innerHTML = `$${(totalPrice).toFixed(2)}`;
 
 
 
