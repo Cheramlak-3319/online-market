@@ -1,4 +1,5 @@
 const Product = require('../model/product.model')
+const Order = require('../model/order.model')
 const hcLucy = require('../controller/hellocash.controller')
 const { LocalStorage } = require('node-localstorage');
 const localStorage = new LocalStorage('./scratch');
@@ -55,87 +56,105 @@ const findAllProduct = async(req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const cheakoutPage = async(req, res) => {
     res.render('checkout');
 }
+
+
+const orderModelCreating = async(req, res) => {
+    const time = Date.now();
+    const traceNumber = time.toString();
+    const { from, amount, cart } = req.body;
+    console.log(from, amount, cart, traceNumber);
+    try {
+        const findProduct = await Order.findOne({ traceNumber });
+        if (!findProduct) {
+            const newProduct = await Order.create({
+                productId: traceNumber,
+                mobile: from,
+                price: amount,
+                products: cart
+            });
+        }
+        res.status(200).json({ newProduct: newProduct })
+    } catch (error) {
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const orderPage = async(req, res) => {
     res.render('order');
@@ -169,4 +188,4 @@ const waitingPage = async(req, res) => {
     await hcLucy.updateInvoice(req, res, description);
 }
 
-module.exports = { homePage, cheakoutPage, orderPage, trackingPage, paymentForOrders, paymentCheaking, waitingPage, creatingProduct, findProduct, findAllProduct }
+module.exports = { homePage, cheakoutPage, orderPage, trackingPage, paymentForOrders, paymentCheaking, waitingPage, creatingProduct, findProduct, findAllProduct, orderModelCreating }
