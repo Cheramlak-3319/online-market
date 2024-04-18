@@ -75,26 +75,24 @@
             const paymentForm = document.getElementById('paymentform');
             paymentForm.addEventListener('submit', async(event) => {
                 event.preventDefault();
-                const time = Date.now();
-                const traceNumber = time.toString()
-                localStorage.setItem('traceNumber', traceNumber)
+                let cart = JSON.parse(localStorage.getItem('cart'));
                 const from = document.querySelector('.from').value;
                 console.log(from);
                 const amount = JSON.parse(localStorage.getItem('total'))
                 try {
-                    const response = await fetch('http://localhost:6500/chere-market/hellocash', {
+                    const response = await fetch('http://localhost:6500/chere-market/order', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
                             from: from,
-                            amount: amount
+                            amount: amount,
+                            cart
                         })
                     });
                     const data = response.json();
                     console.log(data);
-                    window.location.href = 'http://localhost:6500/chere-market/track';
                 } catch (error) {
                     console.error("Error: " + error);
                 }
