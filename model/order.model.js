@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    description: {
+    prosuctId: {
         type: String,
         required: true
     },
@@ -13,10 +13,16 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    category: {
+    mobile: {
         type: String,
-        enum: ['Electronics', 'Clothing', 'Books', 'Other'],
         required: true
+    },
+    invoiceId: {
+        type: String
+    },
+    status: {
+        type: String,
+        default: "pending"
     },
     createdAt: {
         type: Date,
