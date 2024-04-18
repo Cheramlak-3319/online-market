@@ -89,7 +89,10 @@ order.push(product)
 
 localStorage.setItem('order', JSON.stringify(order));
 
-console.log(JSON.parse(localStorage.getItem('order')))
+document.querySelector('.js-place-order').addEventListener('click', () => {
+    localStorage.setItem('order', JSON.stringify(order));
+    window.location.href = 'http://localhost:6500/chere-market/order'
+})
 
 
 
@@ -295,12 +298,4 @@ console.log(JSON.parse(localStorage.getItem('order')))
 //         const { productId, deliveryOptionId } = ele.dataset;
 //         updateDeliveryOption(productId, deliveryOptionId)
 //     })
-// })
-
-
-
-
-// document.querySelector('.js-place-order').addEventListener('click', () => {
-//     localStorage.setItem('total', JSON.stringify(totalPrice))
-//     window.location.href = 'http://localhost:6500/chere-market/order'
 // })

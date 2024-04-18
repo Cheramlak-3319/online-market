@@ -3,12 +3,13 @@ const router = express.Router();
 
 
 
-const { homePage, cheakoutPage, orderPage, trackingPage, paymentForOrders, waitingPage, creatingProduct, findProduct, findAllProduct } = require('../controller/controller')
+const { homePage, orderModelCreating, orderPage, trackingPage, paymentForOrders, waitingPage, creatingProduct, findProduct, findAllProduct, cheakoutPage } = require('../controller/controller')
 
 
 router.get('/home', homePage)
-router.get('/cheakout', cheakoutPage)
+router.post('/order', orderModelCreating)
 router.get('/order', orderPage)
+router.get('/cheakout', cheakoutPage)
 router.get('/track', trackingPage)
 
 
