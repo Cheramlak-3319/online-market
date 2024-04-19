@@ -61,6 +61,11 @@ const cheakoutPage = async(req, res) => {
 }
 
 
+
+const paymentVerification = async(req, res) => {
+    res.render('order');
+}
+
 const orderModelCreating = async(req, res) => {
     const time = Date.now();
     const traceNumber = time.toString();
@@ -76,7 +81,7 @@ const orderModelCreating = async(req, res) => {
                 products: cart
             });
         }
-        res.status(200).json({ newProduct: newProduct })
+        await bankSelecctingPage(req, res)
     } catch (error) {
 
     }
@@ -85,80 +90,80 @@ const orderModelCreating = async(req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const orderPage = async(req, res) => {
-    res.render('order');
+const bankSelecctingPage = async(req, res) => {
+    res.render('bankcontroller');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -188,4 +193,4 @@ const waitingPage = async(req, res) => {
     await hcLucy.updateInvoice(req, res, description);
 }
 
-module.exports = { homePage, cheakoutPage, orderPage, trackingPage, paymentForOrders, paymentCheaking, waitingPage, creatingProduct, findProduct, findAllProduct, orderModelCreating }
+module.exports = { homePage, cheakoutPage, bankSelecctingPage, trackingPage, paymentForOrders, paymentCheaking, waitingPage, creatingProduct, findProduct, findAllProduct, orderModelCreating, paymentVerification }
