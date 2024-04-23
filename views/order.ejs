@@ -67,7 +67,6 @@
         <h2>Payment</h2>
         <label for="from">Mobile:</label>
         <input type="tel" class="from" id="from" name="from" required>
-
         <input type="submit" value="Pay" class="button">
     </form>
     <script>
@@ -93,8 +92,8 @@
                     });
 
                     const data = response.json();
-                    console.log(data);
-                    window.location.href = 'http://localhost:6500/chere-market/select-bank'
+                    console.log(JSON.stringify(data));
+                    window.location.href = 'http://localhost:6500/chere-market/track'
                 } catch (error) {
                     console.error("Error: " + error);
                 }
