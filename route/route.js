@@ -3,26 +3,38 @@ const router = express.Router();
 
 
 
-const { homePage, orderModelCreating, bankSelecctingPage, trackingPage, paymentForOrders, waitingPage, creatingProduct, findProduct, findAllProduct, cheakoutPage, paymentVerification } = require('../controller/controller')
+const { orderModelCreating, thankYouPage, trackingPage, paymentForOrders, waitingPage, creatingProduct, findProduct, findAllProduct, cheakoutPage, paymentVerification, orderedProdctCreateInvoice } = require('../controller/controller')
 
 
-router.get('/home', homePage)
+
+
+//all post methodes in order
+router.post('/product-added', creatingProduct)
 router.post('/order', orderModelCreating)
-router.get('/select-bank', bankSelecctingPage)
-router.get('/cheakout', cheakoutPage)
-router.get('/track', trackingPage)
-router.get('/order', paymentVerification)
-
-
-
-
+router.post('/order-cheaking', orderedProdctCreateInvoice)
 router.post('/hellocash', paymentForOrders)
+
+
+
+
+// all get methods in order
+router.get('/home', findAllProduct)
+router.get('/cheakout', cheakoutPage)
+router.get('/order', paymentVerification)
+router.get('/track', trackingPage)
+router.get('/back', thankYouPage)
+
+
+
+
+
+
+
+
+
 router.get('/waiting', waitingPage)
 
 //product adding
-router.post('/product-added', creatingProduct)
-router.get('/product-added/:productId', findProduct)
-router.get('/product-added', findAllProduct)
 
 
 module.exports = { router }
