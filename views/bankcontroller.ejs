@@ -5,10 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        button {
+            background-image: url('/images/Helloopay.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: white;
+            width: 30vw;
+            height: 20vh;
+            border: none;
+            transform: translate();
+        }
+        
+        label {
+            font-size: 30px;
+            display: flex;
+            text-align: center;
+            font-weight: 700;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
-    <button>HelloLucy</button>
+    <div>
+        <h1>Thank you For selecting US</h1>
+        <button class="back"></button>
+    </div>
+    <script>
+        document.querySelector('.back').addEventListener('click', async function() {
+
+            try {
+
+                window.location.href = 'http://localhost:6500/chere-market/product-added'
+            } catch (error) {
+                console.error("Error: " + error);
+            }
+        })
+    </script>
 </body>
 
 </html>
