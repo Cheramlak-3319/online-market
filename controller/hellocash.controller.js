@@ -35,9 +35,8 @@ const authenticateUser = async(res) => {
 
 
 
-const ceateHcInvoice = async(req, res, from, amount) => {
-    console.log(from, amount);
-    amount = Number(amount);
+const ceateHcInvoice = async(req, res, mobile, price) => {
+    console.log(mobile, price);
     try {
         const signedToken = await authenticateUser(res);
         console.log(signedToken);
@@ -46,18 +45,13 @@ const ceateHcInvoice = async(req, res, from, amount) => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${signedToken}` },
                 body: JSON.stringify({
-                    amount: amount,
-                    from: from,
+                    amount: price,
+                    from: mobile,
                     notifyfrom: true,
                 })
             });
-
-
-        console.log('Payment request Successful');
-        const encodedResponse = await response.json();
-        console.log(encodedResponse.description);
-        const valuedData = encodedResponse.description;
-        return valuedData;
+        const data = await response.json();
+        return data.code;
     } catch (error) {
         console.error(`Error: ${error.message}`);
     }
@@ -80,16 +74,14 @@ const updateInvoice = async(req, res, description) => {
         const data = await response.json();
         const output = JSON.stringify(data);
         for (const item of data) {
-            const code = item['description']
-            console.log(code);
+            const code = item['code']
             const status = item['status'];
             if (description === code) {
                 if (status === 'PROCESSED') {
-                    res.redirect('http://localhost:6500/chere-market/home');
-                    break;
+                    console.log('processd')
+                    res.redirect('http://localhost:6500/chere-market/back');
                 } else if (status === 'PENDING') {
                     console.log('still pending')
-                    res.redirect('http://localhost:6500/chere-market/waiting');
                 } else {
                     console.log('try again');
                     break;
