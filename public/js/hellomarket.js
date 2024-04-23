@@ -30,9 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.querySelector('.cart-quantity').innerHTML = `${totalQuantity}`
         cart.push(product);
 
-        for (let i = 0; i < cart.length; i++) {
-            console.log(cart[i]);
-        }
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 });
