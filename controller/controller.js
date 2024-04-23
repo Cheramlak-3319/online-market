@@ -74,96 +74,32 @@ const orderModelCreating = async(req, res) => {
     try {
         const findProduct = await Order.findOne({ traceNumber });
         if (!findProduct) {
-            const newProduct = await Order.create({
-                productId: traceNumber,
+            await Order.create({
+                traceNumber: traceNumber,
                 mobile: from,
                 price: amount,
                 products: cart
             });
         }
-        await bankSelecctingPage(req, res)
+        await orderedProdctCreateInvoice(req, res, from, amount);
+    } catch (error) {}
+
+}
+
+
+
+
+const orderedProdctCreateInvoice = async(req, res, from, amount) => {
+    try {
+        const description = await hcLucy.ceateHcInvoice(req, res, from, amount);
+        console.log(description);
+        localStorage.setItem(`description`, description)
+        await trackingPage(req, res)
     } catch (error) {
-
+        console.error('Error finding product:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
-
 }
-
-
-
-const bankSelecctingPage = async(req, res) => {
-    res.render('bankcontroller');
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -182,10 +118,6 @@ const trackingPage = async(req, res) => {
 }
 
 
-const paymentCheaking = async(req, res) => {
-    await homePage(req, res)
-}
-
 
 const waitingPage = async(req, res) => {
     const description = localStorage.getItem('description');
@@ -193,4 +125,9 @@ const waitingPage = async(req, res) => {
     await hcLucy.updateInvoice(req, res, description);
 }
 
-module.exports = { homePage, cheakoutPage, bankSelecctingPage, trackingPage, paymentForOrders, paymentCheaking, waitingPage, creatingProduct, findProduct, findAllProduct, orderModelCreating, paymentVerification }
+
+const thankYouPage = async(req, res) => {
+    res.render('bankcontroller');
+}
+
+module.exports = { homePage, cheakoutPage, thankYouPage, trackingPage, paymentForOrders, waitingPage, creatingProduct, findProduct, findAllProduct, orderModelCreating, paymentVerification, orderedProdctCreateInvoice }
