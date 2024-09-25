@@ -1,8 +1,5 @@
-const HC_PRINCIPAL = "1256263";
-const HC_PASSWORD = "moges@123";
-const HC_SYSTEM = "lucy";
 const ejs = require('ejs');
-
+require('dotenv').config
 
 
 
@@ -16,9 +13,9 @@ const authenticateUser = async(res) => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    'principal': "1256263",
-                    'credentials': "moges@123",
-                    'system': "lucy"
+                    'principal': process.env.HC_PRINCIPAL,
+                    'credentials': process.env.HC_PASSWORD,
+                    'system': process.env.HC_SYSTEM
                 })
             });
 
